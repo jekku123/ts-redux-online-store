@@ -9,7 +9,7 @@ function App() {
             <StoreNavbar />
             <Routes>
                 <Route path='/' element={<List />} />
-                <Route path='/products' element={<Cart />} />
+                <Route path='/cart' element={<Cart />} />
             </Routes>
         </BrowserRouter>
     );

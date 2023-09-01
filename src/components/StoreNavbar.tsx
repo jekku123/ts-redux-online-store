@@ -12,10 +12,10 @@ const StoreNavbar = () => {
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='me-auto'>
                         <LinkContainer to='/'>
-                            <Nav.Link>Home</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to='/products'>
                             <Nav.Link>Products</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/cart'>
+                            <Nav.Link>Cart</Nav.Link>
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
