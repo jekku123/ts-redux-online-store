@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { IProduct } from '../features/store/productsSlice';
+import {
+    ProductStateType,
+    selectProducts,
+} from '../features/store/productsSlice';
 import { fetchProducts } from '../features/store/storeAPI';
 import Product from './Product';
 
 const List = () => {
-    const products: IProduct[] = useAppSelector(
-        (state) => state.products.products
-    );
+    const products: ProductStateType = useAppSelector(selectProducts);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
