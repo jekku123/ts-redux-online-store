@@ -16,7 +16,7 @@ const initState: ProductStateType = {
 };
 
 export const productsSlice = createSlice({
-    name: 'product',
+    name: 'products',
     initialState: initState,
     reducers: {},
     extraReducers: (builder) => {

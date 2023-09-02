@@ -8,8 +8,8 @@ function App() {
         <BrowserRouter>
             <StoreNavbar />
             <Routes>
-                <Route path='/' element={<List />} />
-                <Route path='/products' element={<Cart />} />
+                <Route index element={<List />} />
+                <Route path='/cart' element={<Cart />} />
             </Routes>
         </BrowserRouter>
     );
