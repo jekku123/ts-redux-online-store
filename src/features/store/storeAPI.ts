@@ -1,7 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const api: string | undefined = process.env.REACT_APP_STORE_API_URL as string;
+const api: string | undefined = process.env.REACT_APP_STORE_API_URL;
+
+if (!api) {
+    throw new Error(
+        'REACT_APP_STORE_API_URL is not defined in environment variables!'
+    );
+}
 
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
