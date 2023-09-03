@@ -27,7 +27,6 @@ export const cartSlice = createSlice({
 });
 
 export const { add, remove } = cartSlice.actions;
-
 export const cartCount = (state: RootState) => state.cart.products;
 
 export default cartSlice.reducer;
