@@ -1,10 +1,10 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { cartCount } from '../redux/features/cart/cartSlice';
+import { cartProducts } from '../redux/features/cart/cartSlice';
 import { useAppSelector } from '../redux/hooks';
 
 const StoreNavbar = () => {
-    const cart = useAppSelector(cartCount);
+    const cart = useAppSelector(cartProducts);
 
     return (
         <Navbar bg='dark' variant='dark' expand='md'>

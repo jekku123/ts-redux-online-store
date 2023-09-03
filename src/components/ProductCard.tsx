@@ -7,7 +7,7 @@ interface ProductProps {
     product: IProduct;
 }
 
-const Product = ({ product }: ProductProps) => {
+const ProductCard = ({ product }: ProductProps) => {
     const { title, description, image } = product;
     const dispatch = useAppDispatch();
 
@@ -37,4 +37,4 @@ const Product = ({ product }: ProductProps) => {
     );
 };
 
-export default Product;
+export default ProductCard;

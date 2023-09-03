@@ -3,7 +3,7 @@ import { IProduct } from '../../../types';
 
 export const productApi = createApi({
     reducerPath: 'productApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://fakestoreapi.com' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://fakestoreapi.co' }),
     endpoints: (builder) => ({
         getProducts: builder.query<IProduct[], void>({
             query: () => 'products',
