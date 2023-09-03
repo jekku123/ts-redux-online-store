@@ -1,19 +1,14 @@
 import { Button, Card } from 'react-bootstrap';
-import { add } from '../redux/features/cart/cartSlice';
-import { useAppDispatch } from '../redux/hooks';
+import { useCart } from '../hooks/useCart';
 import { IProduct } from '../types';
 
 interface ProductProps {
     product: IProduct;
 }
 
-const ProductCard = ({ product }: ProductProps) => {
+const ProductCard: React.FC<ProductProps> = ({ product }) => {
     const { title, description, image } = product;
-    const dispatch = useAppDispatch();
-
-    const addToCart = () => {
-        dispatch(add(product));
-    };
+    const { addToCart } = useCart();
 
     return (
         <Card style={{ width: '18rem' }}>
@@ -29,7 +24,7 @@ const ProductCard = ({ product }: ProductProps) => {
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{description.slice(0, 100) + '...'}</Card.Text>
-                <Button variant='secondary' onClick={addToCart}>
+                <Button variant='secondary' onClick={addToCart(product)}>
                     Add to cart
                 </Button>
             </Card.Body>
