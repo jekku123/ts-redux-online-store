@@ -8,7 +8,7 @@ import Root from './Root';
 import Cart from './components/Cart';
 import ProductList from './components/ProductList';
 
-function App() {
+const App: React.FC = () => {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path='/' element={<Root />}>
@@ -19,6 +19,6 @@ function App() {
     );
 
     return <RouterProvider router={router} />;
-}
+};
 
 export default App;

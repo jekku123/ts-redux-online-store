@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { IProduct } from '../../../types';
 import type { RootState } from '../../store';
 
-interface ICart {
+export interface ICart {
     cartItems: {
         cartItemId: string;
         product: IProduct;

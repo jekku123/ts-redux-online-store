@@ -2,7 +2,6 @@ import {
     MDBBtn,
     MDBCard,
     MDBCardBody,
-    MDBCardImage,
     MDBCardText,
     MDBCol,
     MDBContainer,
@@ -10,58 +9,13 @@ import {
     MDBRow,
     MDBTypography,
 } from 'mdb-react-ui-kit';
-import { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { cartProducts, remove } from '../redux/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useCart } from '../hooks/useCart';
+import CartItem from './CartItem';
 
-const Cart = () => {
-    const cart = useAppSelector(cartProducts);
-    const dispatch = useAppDispatch();
-    const [delivery, setDelivery] = useState(true);
-
-    const removeFromCart = (id: string) => () => {
-        dispatch(remove(id));
-    };
-
-    const totalPrice = cart.reduce((acc, curr) => {
-        return acc + curr.product.price;
-    }, 0);
-
-    const totalItems = cart.length || 0;
-
-    const items = cart.map((item) => (
-        <MDBRow
-            className='mb-4 d-flex justify-content-between align-items-center'
-            key={item.cartItemId}
-        >
-            <MDBCol md='2' lg='2' xl='2'>
-                <MDBCardImage
-                    src={item.product.image}
-                    fluid
-                    className='rounded-3'
-                    alt={item.product.title}
-                />
-            </MDBCol>
-            <MDBCol md='3' lg='3' xl='3'>
-                <MDBTypography tag='h6' className='text-muted'>
-                    {item.product.title}
-                </MDBTypography>
-            </MDBCol>
-            <MDBCol md='3' lg='2' xl='2' className='text-end'>
-                <MDBTypography tag='h6' className='mb-0'>
-                    € {item.product.price}
-                </MDBTypography>
-            </MDBCol>
-            <MDBCol md='1' lg='1' xl='1' className='text-end'>
-                <MDBIcon
-                    fas
-                    icon='times'
-                    onClick={removeFromCart(item.cartItemId)}
-                />
-            </MDBCol>
-        </MDBRow>
-    ));
+const Cart: React.FC = () => {
+    const { cart, totalPrice, totalItems, removeFromCart, setDelivery } =
+        useCart();
 
     return (
         <section className='h-100 h-custom' style={{ backgroundColor: '#eee' }}>
@@ -90,7 +44,10 @@ const Cart = () => {
 
                                             <hr className='my-4' />
 
-                                            {items}
+                                            <CartItem
+                                                cart={cart}
+                                                removeFromCart={removeFromCart}
+                                            />
 
                                             <hr className='my-4' />
 
@@ -138,7 +95,9 @@ const Cart = () => {
                                                     className='select p-2 rounded bg-grey'
                                                     style={{ width: '100%' }}
                                                     onChange={() =>
-                                                        setDelivery(!delivery)
+                                                        setDelivery(
+                                                            (prev) => !prev
+                                                        )
                                                     }
                                                 >
                                                     <option value='1'>
@@ -160,12 +119,7 @@ const Cart = () => {
                                                     Total price
                                                 </MDBTypography>
                                                 <MDBTypography tag='h5'>
-                                                    €{' '}
-                                                    {delivery
-                                                        ? (
-                                                              totalPrice + 5
-                                                          ).toFixed(2)
-                                                        : totalPrice.toFixed(2)}
+                                                    € {totalPrice}
                                                 </MDBTypography>
                                             </div>
 
