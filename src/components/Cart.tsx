@@ -7,7 +7,6 @@ import {
     MDBCol,
     MDBContainer,
     MDBIcon,
-    MDBInput,
     MDBRow,
     MDBTypography,
 } from 'mdb-react-ui-kit';
@@ -48,17 +47,6 @@ const Cart = () => {
                 <MDBTypography tag='h6' className='text-muted'>
                     {item.product.title}
                 </MDBTypography>
-            </MDBCol>
-            <MDBCol md='3' lg='3' xl='3' className='d-flex align-items-center'>
-                <MDBBtn color='link' className='px-2'>
-                    <MDBIcon fas icon='minus' />
-                </MDBBtn>
-
-                <MDBInput type='number' min='0' defaultValue={1} size='sm' />
-
-                <MDBBtn color='link' className='px-2'>
-                    <MDBIcon fas icon='plus' />
-                </MDBBtn>
             </MDBCol>
             <MDBCol md='3' lg='2' xl='2' className='text-end'>
                 <MDBTypography tag='h6' className='mb-0'>
@@ -137,18 +125,6 @@ const Cart = () => {
                                             </MDBTypography>
 
                                             <hr className='my-4' />
-
-                                            <div className='d-flex justify-content-between mb-4'>
-                                                <MDBTypography
-                                                    tag='h5'
-                                                    className='text-uppercase'
-                                                >
-                                                    items {totalItems}
-                                                </MDBTypography>
-                                                <MDBTypography tag='h5'>
-                                                    € {totalPrice.toFixed(2)}
-                                                </MDBTypography>
-                                            </div>
 
                                             <MDBTypography
                                                 tag='h5'
