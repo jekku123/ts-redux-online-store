@@ -1,21 +1,25 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { cartCount } from '../redux/features/cart/cartSlice';
+import { useAppSelector } from '../redux/hooks';
 
 const StoreNavbar = () => {
+    const cart = useAppSelector(cartCount);
+
     return (
-        <Navbar bg='primary' variant='dark' expand='md'>
+        <Navbar bg='dark' variant='dark' expand='md'>
             <Container>
-                <div className='d-flex justify-content-between w-100'>
+                <LinkContainer to='/'>
                     <Navbar.Brand>My Store</Navbar.Brand>
-                    <Navbar.Toggle aria-controls='basic-navbar-nav' />
-                </div>
+                </LinkContainer>
+                <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='me-auto'>
                         <LinkContainer to='/'>
-                            <Nav.Link>Home</Nav.Link>
+                            <Nav.Link>Products</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to='/products'>
-                            <Nav.Link>Products</Nav.Link>
+                            <Nav.Link>Cart ({cart.length})</Nav.Link>
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>

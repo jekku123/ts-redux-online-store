@@ -1,7 +1,20 @@
-import { Card } from 'react-bootstrap';
-import { IProduct } from '../features/store/productsSlice';
+import { Button, Card } from 'react-bootstrap';
+import { add } from '../redux/features/cart/cartSlice';
+import { useAppDispatch } from '../redux/hooks';
+import { IProduct } from '../types';
 
-const Product = ({ image, title, description }: IProduct) => {
+interface ProductProps {
+    product: IProduct;
+}
+
+const Product = ({ product }: ProductProps) => {
+    const { title, description, image } = product;
+    const dispatch = useAppDispatch();
+
+    const addToCart = () => {
+        dispatch(add(product));
+    };
+
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Img
@@ -16,6 +29,9 @@ const Product = ({ image, title, description }: IProduct) => {
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{description.slice(0, 100) + '...'}</Card.Text>
+                <Button variant='secondary' onClick={addToCart}>
+                    Add to cart
+                </Button>
             </Card.Body>
         </Card>
     );
