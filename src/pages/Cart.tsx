@@ -128,7 +128,7 @@ const Cart: React.FC = () => {
                                                 block
                                                 size='lg'
                                             >
-                                                Register
+                                                Order
                                             </MDBBtn>
                                         </div>
                                     </MDBCol>
