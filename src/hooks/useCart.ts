@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { add, cartProducts, remove } from '../redux/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { IProduct } from '../redux/services/products/productApi';
 
 export const useCart = () => {
     const cart = useAppSelector(cartProducts);
