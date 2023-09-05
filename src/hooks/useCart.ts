@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { add, cartProducts, remove } from '../redux/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { IProduct } from '../redux/services/products/productApi';
@@ -8,13 +8,19 @@ export const useCart = () => {
     const dispatch = useAppDispatch();
     const [delivery, setDelivery] = useState(true);
 
-    const addToCart = (product: IProduct) => () => {
-        dispatch(add(product));
-    };
+    const addToCart = useCallback(
+        (product: IProduct) => () => {
+            dispatch(add(product));
+        },
+        [dispatch]
+    );
 
-    const removeFromCart = (id: string) => () => {
-        dispatch(remove(id));
-    };
+    const removeFromCart = useCallback(
+        (id: string) => () => {
+            dispatch(remove(id));
+        },
+        [dispatch]
+    );
 
     const totalPrice =
         Math.round(
