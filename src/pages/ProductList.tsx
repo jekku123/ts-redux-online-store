@@ -1,37 +1,41 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { MDBContainer, MDBTypography } from 'mdb-react-ui-kit';
 import ProductCard from '../components/ProductCard';
 import { useGetProductsQuery } from '../redux/services/products/productApi';
 
 const List = () => {
-    const { data, isLoading, error } = useGetProductsQuery();
+    const { data, isLoading, error } = useGetProductsQuery(undefined, {
+        refetchOnMountOrArgChange: true,
+    });
 
     return (
-        <Container>
+        <MDBContainer>
             {isLoading ? (
-                <h3 className='text-center p-3'>Loading...</h3>
+                <MDBTypography tag='h3' className='text-center p-3'>
+                    Loading...
+                </MDBTypography>
             ) : error ? (
-                <h3 className='text-center p-3'>There was an error :(</h3>
+                <MDBTypography tag='h3' className='text-center p-3'>
+                    There was an error :(
+                </MDBTypography>
             ) : data ? (
                 <>
-                    <h2 className='text-center p-3'>List of products</h2>
-                    <Row
-                        xs={2}
-                        md={3}
-                        xl={4}
-                        className='g-4 justify-content-center'
-                    >
-                        {data?.map((product) => (
-                            <Col key={product.id}>
+                    <MDBTypography tag='h2' className='text-center p-3'>
+                        List of products
+                    </MDBTypography>
+
+                    <div className='d-flex flex-wrap justify-content-center'>
+                        {data.map((product) => (
+                            <div key={product.id} className='p-3'>
                                 <ProductCard
                                     key={product.id}
                                     product={product}
                                 />
-                            </Col>
+                            </div>
                         ))}
-                    </Row>
+                    </div>
                 </>
             ) : null}
-        </Container>
+        </MDBContainer>
     );
 };
 

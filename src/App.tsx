@@ -13,7 +13,7 @@ const App = () => {
         createRoutesFromElements(
             <Route path='/' element={<Root />}>
                 <Route index element={<ProductList />} />
-                <Route path='/products' element={<Cart />} />
+                <Route path='/cart' element={<Cart />} />
             </Route>
         )
     );

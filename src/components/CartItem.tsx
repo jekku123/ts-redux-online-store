@@ -7,10 +7,10 @@ import {
 } from 'mdb-react-ui-kit';
 import { ICart } from '../redux/features/cart/cartSlice';
 
-interface CartItemProps {
+type CartItemProps = {
     cart: ICart['cartItems'];
     removeFromCart: (id: string) => () => void;
-}
+};
 
 const CartItem = ({ cart, removeFromCart }: CartItemProps) => {
     return (
