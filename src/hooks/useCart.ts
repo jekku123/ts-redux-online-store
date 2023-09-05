@@ -22,6 +22,10 @@ export const useCart = () => {
         [dispatch]
     );
 
+    const changeDeliveryMethod = () => {
+        setDelivery(!delivery);
+    };
+
     const totalPrice =
         Math.round(
             (cart.reduce((acc, curr) => {
@@ -39,6 +43,6 @@ export const useCart = () => {
         removeFromCart,
         totalPrice,
         totalItems,
-        setDelivery,
+        changeDeliveryMethod,
     };
 };

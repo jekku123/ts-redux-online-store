@@ -14,8 +14,13 @@ import CartItem from '../components/CartItem';
 import { useCart } from '../hooks/useCart';
 
 const Cart = () => {
-    const { cart, totalPrice, totalItems, removeFromCart, setDelivery } =
-        useCart();
+    const {
+        cart,
+        totalPrice,
+        totalItems,
+        removeFromCart,
+        changeDeliveryMethod,
+    } = useCart();
 
     return (
         <MDBContainer className='py-5' style={{ backgroundColor: '#eee' }}>
@@ -93,9 +98,7 @@ const Cart = () => {
                                             <select
                                                 className='select p-2 rounded bg-grey'
                                                 style={{ width: '100%' }}
-                                                onChange={() =>
-                                                    setDelivery((prev) => !prev)
-                                                }
+                                                onChange={changeDeliveryMethod}
                                             >
                                                 <option value='1'>
                                                     Standard-Delivery- €5.00
