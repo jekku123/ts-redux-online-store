@@ -13,7 +13,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import CartItem from '../components/CartItem';
 import { useCart } from '../hooks/useCart';
 
-const Cart: React.FC = () => {
+const Cart = () => {
     const { cart, totalPrice, totalItems, removeFromCart, setDelivery } =
         useCart();
 

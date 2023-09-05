@@ -3,7 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { cartProducts } from '../redux/features/cart/cartSlice';
 import { useAppSelector } from '../redux/hooks';
 
-const StoreNavbar: React.FC = () => {
+const StoreNavbar = () => {
     const cart = useAppSelector(cartProducts);
 
     return (

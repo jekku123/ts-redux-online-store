@@ -1,12 +1,12 @@
 import { Button, Card } from 'react-bootstrap';
 import { useCart } from '../hooks/useCart';
-import { IProduct } from '../types';
+import { IProduct } from '../redux/services/products/productApi';
 
 interface ProductProps {
     product: IProduct;
 }
 
-const ProductCard: React.FC<ProductProps> = ({ product }) => {
+const ProductCard = ({ product }: ProductProps) => {
     const { title, description, image } = product;
     const { addToCart } = useCart();
 

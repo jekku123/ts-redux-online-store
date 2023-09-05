@@ -5,7 +5,6 @@ import {
     MDBRow,
     MDBTypography,
 } from 'mdb-react-ui-kit';
-import React from 'react';
 import { ICart } from '../redux/features/cart/cartSlice';
 
 interface CartItemProps {
@@ -13,7 +12,7 @@ interface CartItemProps {
     removeFromCart: (id: string) => () => void;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ cart, removeFromCart }) => {
+const CartItem = ({ cart, removeFromCart }: CartItemProps) => {
     return (
         <>
             {cart.map((item) => (
