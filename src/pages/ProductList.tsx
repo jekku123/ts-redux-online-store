@@ -7,34 +7,34 @@ const List = () => {
         refetchOnMountOrArgChange: true,
     });
 
+    if (isLoading) {
+        return (
+            <MDBTypography tag='h3' className='text-center p-3'>
+                Loading...
+            </MDBTypography>
+        );
+    }
+
+    if (error) {
+        return (
+            <MDBTypography tag='h3' className='text-center p-3'>
+                There was an error :(
+            </MDBTypography>
+        );
+    }
+
     return (
         <MDBContainer>
-            {isLoading ? (
-                <MDBTypography tag='h3' className='text-center p-3'>
-                    Loading...
-                </MDBTypography>
-            ) : error ? (
-                <MDBTypography tag='h3' className='text-center p-3'>
-                    There was an error :(
-                </MDBTypography>
-            ) : data ? (
-                <>
-                    <MDBTypography tag='h2' className='text-center p-3'>
-                        List of products
-                    </MDBTypography>
-
-                    <div className='d-flex flex-wrap justify-content-center'>
-                        {data.map((product) => (
-                            <div key={product.id} className='p-3'>
-                                <ProductCard
-                                    key={product.id}
-                                    product={product}
-                                />
-                            </div>
-                        ))}
+            <MDBTypography tag='h2' className='text-center p-3'>
+                List of products
+            </MDBTypography>
+            <div className='d-flex flex-wrap justify-content-center'>
+                {data?.map((product) => (
+                    <div key={product.id} className='p-3'>
+                        <ProductCard key={product.id} product={product} />
                     </div>
-                </>
-            ) : null}
+                ))}
+            </div>
         </MDBContainer>
     );
 };
