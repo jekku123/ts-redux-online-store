@@ -10,10 +10,10 @@ import {
     MDBTypography,
 } from 'mdb-react-ui-kit';
 import { LinkContainer } from 'react-router-bootstrap';
+import CartItem from '../components/CartItem';
 import { useCart } from '../hooks/useCart';
-import CartItem from './CartItem';
 
-const Cart: React.FC = () => {
+const Cart = () => {
     const { cart, totalPrice, totalItems, removeFromCart, setDelivery } =
         useCart();
 
@@ -128,7 +128,7 @@ const Cart: React.FC = () => {
                                                 block
                                                 size='lg'
                                             >
-                                                Register
+                                                Order
                                             </MDBBtn>
                                         </div>
                                     </MDBCol>

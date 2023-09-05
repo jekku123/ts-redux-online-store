@@ -1,8 +1,8 @@
 import { Col, Container, Row } from 'react-bootstrap';
+import ProductCard from '../components/ProductCard';
 import { useGetProductsQuery } from '../redux/services/products/productApi';
-import ProductCard from './ProductCard';
 
-const List: React.FC = () => {
+const List = () => {
     const { data, isLoading, error } = useGetProductsQuery();
 
     return (

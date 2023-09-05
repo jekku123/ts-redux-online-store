@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
-import { IProduct } from '../../../types';
+import { IProduct } from '../../services/products/productApi';
 import type { RootState } from '../../store';
 
 export interface ICart {

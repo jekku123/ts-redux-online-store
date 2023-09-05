@@ -5,10 +5,10 @@ import {
     createRoutesFromElements,
 } from 'react-router-dom';
 import Root from './Root';
-import Cart from './components/Cart';
-import ProductList from './components/ProductList';
+import Cart from './pages/Cart';
+import ProductList from './pages/ProductList';
 
-const App: React.FC = () => {
+const App = () => {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path='/' element={<Root />}>
