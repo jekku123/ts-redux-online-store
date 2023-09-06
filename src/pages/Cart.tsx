@@ -20,6 +20,7 @@ const Cart = () => {
         totalItems,
         removeFromCart,
         changeDeliveryMethod,
+        addToCart,
     } = useCart();
 
     return (
@@ -51,6 +52,7 @@ const Cart = () => {
                                         <CartItem
                                             cart={cart}
                                             removeFromCart={removeFromCart}
+                                            addToCart={addToCart}
                                         />
 
                                         <hr className='my-4' />

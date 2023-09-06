@@ -1,13 +1,12 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuid } from 'uuid';
 import { IProduct } from '../../services/products/productApi';
 import type { RootState } from '../../store';
 
 export interface ICart {
     cartItems: {
-        cartItemId: string;
         product: IProduct;
+        cartQuantity: number;
     }[];
 }
 
@@ -20,15 +19,30 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         add: (state, action: PayloadAction<IProduct>) => {
-            state.cartItems.push({
-                cartItemId: uuid(),
-                product: action.payload,
-            });
-        },
-        remove: (state, action: PayloadAction<string>) => {
-            state.cartItems = state.cartItems.filter(
-                (item) => item.cartItemId !== action.payload
+            const index = state.cartItems.findIndex(
+                (item) => item.product.id === action.payload.id
             );
+            if (index > -1) {
+                state.cartItems[index].cartQuantity += 1;
+            } else {
+                state.cartItems.push({
+                    product: action.payload,
+                    cartQuantity: 1,
+                });
+            }
+        },
+        remove: (state, action: PayloadAction<number>) => {
+            const index = state.cartItems.findIndex(
+                (item) => item.product.id === action.payload
+            );
+
+            if (state.cartItems[index].cartQuantity > 1) {
+                state.cartItems[index].cartQuantity -= 1;
+            } else {
+                state.cartItems = state.cartItems.filter(
+                    (item) => item.product.id !== action.payload
+                );
+            }
         },
     },
 });

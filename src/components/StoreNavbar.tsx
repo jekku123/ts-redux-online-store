@@ -11,11 +11,13 @@ import {
 } from 'mdb-react-ui-kit';
 import { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useCart } from '../hooks/useCart';
 import { cartProducts } from '../redux/features/cart/cartSlice';
 import { useAppSelector } from '../redux/hooks';
 
 const StoreNavbar = () => {
     const cart = useAppSelector(cartProducts);
+    const { totalItems } = useCart();
     const [showNavSecond, setShowNavSecond] = useState(false);
 
     return (
@@ -41,7 +43,7 @@ const StoreNavbar = () => {
                             <MDBNavbarLink>
                                 Cart{' '}
                                 <MDBBadge pill color='danger'>
-                                    {cart.length}
+                                    {totalItems}
                                 </MDBBadge>
                             </MDBNavbarLink>
                         </LinkContainer>

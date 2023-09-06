@@ -1,24 +1,28 @@
 import {
+    MDBBtn,
     MDBCardImage,
     MDBCol,
     MDBIcon,
+    MDBInput,
     MDBRow,
     MDBTypography,
 } from 'mdb-react-ui-kit';
 import { ICart } from '../redux/features/cart/cartSlice';
+import { IProduct } from '../redux/services/products/productApi';
 
 type CartItemProps = {
     cart: ICart['cartItems'];
-    removeFromCart: (id: string) => () => void;
+    removeFromCart: (id: number) => () => void;
+    addToCart: (product: IProduct) => void;
 };
 
-const CartItem = ({ cart, removeFromCart }: CartItemProps) => {
+const CartItem = ({ cart, removeFromCart, addToCart }: CartItemProps) => {
     return (
         <>
             {cart.map((item) => (
                 <MDBRow
                     className='mb-4 d-flex justify-content-between align-items-center'
-                    key={item.cartItemId}
+                    key={item.product.id}
                 >
                     <MDBCol md='2' lg='2' xl='2'>
                         <MDBCardImage
@@ -33,16 +37,45 @@ const CartItem = ({ cart, removeFromCart }: CartItemProps) => {
                             {item.product.title}
                         </MDBTypography>
                     </MDBCol>
+                    <MDBCol
+                        md='3'
+                        lg='3'
+                        xl='3'
+                        className='d-flex align-items-center'
+                    >
+                        <MDBBtn color='link' className='px-2'>
+                            <MDBIcon
+                                fas
+                                icon='minus'
+                                onClick={removeFromCart(item.product.id)}
+                            />
+                        </MDBBtn>
+
+                        <MDBInput
+                            type='text'
+                            min='0'
+                            value={item.cartQuantity}
+                            size='sm'
+                        />
+
+                        <MDBBtn color='link' className='px-2'>
+                            <MDBIcon
+                                fas
+                                icon='plus'
+                                onClick={addToCart(item.product)}
+                            />
+                        </MDBBtn>
+                    </MDBCol>
                     <MDBCol md='3' lg='2' xl='2' className='text-end'>
                         <MDBTypography tag='h6' className='mb-0'>
-                            € {item.product.price}
+                            € {item.product.price * item.cartQuantity}
                         </MDBTypography>
                     </MDBCol>
                     <MDBCol md='1' lg='1' xl='1' className='text-end'>
                         <MDBIcon
                             fas
                             icon='times'
-                            onClick={removeFromCart(item.cartItemId)}
+                            onClick={removeFromCart(item.product.id)}
                         />
                     </MDBCol>
                 </MDBRow>

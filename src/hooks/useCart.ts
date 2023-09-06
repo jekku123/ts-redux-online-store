@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { add, cartProducts, remove } from '../redux/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { IProduct } from '../redux/services/products/productApi';
@@ -8,20 +8,13 @@ export const useCart = () => {
     const dispatch = useAppDispatch();
     const [delivery, setDelivery] = useState(true);
 
-    const addToCart = useCallback(
-        (product: IProduct) => () => {
-            dispatch(add(product));
-        },
-        [dispatch]
-    );
+    const addToCart = (product: IProduct) => () => {
+        dispatch(add(product));
+    };
 
-    const removeFromCart = useCallback(
-        (id: string) => () => {
-            dispatch(remove(id));
-        },
-        [dispatch]
-    );
-
+    const removeFromCart = (id: number) => () => {
+        dispatch(remove(id));
+    };
     const changeDeliveryMethod = () => {
         setDelivery(!delivery);
     };
@@ -29,13 +22,15 @@ export const useCart = () => {
     const totalPrice =
         Math.round(
             (cart.reduce((acc, curr) => {
-                return acc + curr.product.price;
+                return acc + curr.product.price * curr.cartQuantity;
             }, 0) +
                 (delivery ? 5 : 0)) *
                 100
         ) / 100;
 
-    const totalItems = cart.length || 0;
+    const totalItems = cart.reduce((acc, curr) => {
+        return acc + curr.cartQuantity;
+    }, 0);
 
     return {
         cart,
