@@ -9,9 +9,12 @@ import {
     MDBRow,
     MDBTypography,
 } from 'mdb-react-ui-kit';
+import { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import CartItem from '../components/CartItem';
+import SummaryModal from '../components/SummaryModal';
 import { useCart } from '../hooks/useCart';
+import { roundANumber } from '../utils/roundANumber';
 
 const Cart = () => {
     const {
@@ -21,7 +24,12 @@ const Cart = () => {
         removeFromCart,
         changeDeliveryMethod,
         addToCart,
+        delivery,
+        forceRemoveAll,
     } = useCart();
+
+    const [basicModal, setBasicModal] = useState(false);
+    const toggleShow = () => setBasicModal(!basicModal);
 
     return (
         <MDBContainer className='py-5' style={{ backgroundColor: '#eee' }}>
@@ -53,6 +61,7 @@ const Cart = () => {
                                             cart={cart}
                                             removeFromCart={removeFromCart}
                                             addToCart={addToCart}
+                                            removeAll={forceRemoveAll}
                                         />
 
                                         <hr className='my-4' />
@@ -103,7 +112,7 @@ const Cart = () => {
                                                 onChange={changeDeliveryMethod}
                                             >
                                                 <option value='1'>
-                                                    Standard-Delivery- €5.00
+                                                    Home-Delivery- €5.00
                                                 </option>
                                                 <option value='2'>
                                                     Pick-up- €0.00
@@ -121,13 +130,27 @@ const Cart = () => {
                                                 Total price
                                             </MDBTypography>
                                             <MDBTypography tag='h5'>
-                                                € {totalPrice}
+                                                € {roundANumber(totalPrice)}
                                             </MDBTypography>
                                         </div>
 
-                                        <MDBBtn color='dark' block size='lg'>
+                                        <MDBBtn
+                                            color='dark'
+                                            block
+                                            size='lg'
+                                            onClick={toggleShow}
+                                        >
                                             Order
                                         </MDBBtn>
+
+                                        <SummaryModal
+                                            basicModal={basicModal}
+                                            setBasicModal={setBasicModal}
+                                            toggleShow={toggleShow}
+                                            cart={cart}
+                                            totalPrice={totalPrice}
+                                            delivery={delivery}
+                                        />
                                     </div>
                                 </MDBCol>
                             </MDBRow>

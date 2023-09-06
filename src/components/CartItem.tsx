@@ -9,14 +9,21 @@ import {
 } from 'mdb-react-ui-kit';
 import { ICart } from '../redux/features/cart/cartSlice';
 import { IProduct } from '../redux/services/products/productApi';
+import { roundANumber } from '../utils/roundANumber';
 
 type CartItemProps = {
     cart: ICart['cartItems'];
     removeFromCart: (id: number) => () => void;
     addToCart: (product: IProduct) => void;
+    removeAll: (id: number) => void;
 };
 
-const CartItem = ({ cart, removeFromCart, addToCart }: CartItemProps) => {
+const CartItem = ({
+    cart,
+    removeFromCart,
+    addToCart,
+    removeAll,
+}: CartItemProps) => {
     return (
         <>
             {cart.map((item) => (
@@ -68,14 +75,17 @@ const CartItem = ({ cart, removeFromCart, addToCart }: CartItemProps) => {
                     </MDBCol>
                     <MDBCol md='3' lg='2' xl='2' className='text-end'>
                         <MDBTypography tag='h6' className='mb-0'>
-                            € {item.product.price * item.cartQuantity}
+                            €{' '}
+                            {roundANumber(
+                                item.product.price * item.cartQuantity
+                            )}
                         </MDBTypography>
                     </MDBCol>
                     <MDBCol md='1' lg='1' xl='1' className='text-end'>
                         <MDBIcon
                             fas
                             icon='times'
-                            onClick={removeFromCart(item.product.id)}
+                            onClick={removeAll(item.product.id)}
                         />
                     </MDBCol>
                 </MDBRow>

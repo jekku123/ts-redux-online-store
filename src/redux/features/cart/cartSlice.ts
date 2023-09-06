@@ -44,10 +44,15 @@ export const cartSlice = createSlice({
                 );
             }
         },
+        removeAll: (state, action: PayloadAction<number>) => {
+            state.cartItems = state.cartItems.filter(
+                (item) => item.product.id !== action.payload
+            );
+        },
     },
 });
 
-export const { add, remove } = cartSlice.actions;
+export const { add, remove, removeAll } = cartSlice.actions;
 export const cartProducts = (state: RootState) => state.cart.cartItems;
 
 export default cartSlice.reducer;

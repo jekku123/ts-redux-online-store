@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { add, cartProducts, remove } from '../redux/features/cart/cartSlice';
+import {
+    add,
+    cartProducts,
+    remove,
+    removeAll,
+} from '../redux/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { IProduct } from '../redux/services/products/productApi';
 
@@ -15,29 +20,31 @@ export const useCart = () => {
     const removeFromCart = (id: number) => () => {
         dispatch(remove(id));
     };
+
+    const forceRemoveAll = (id: number) => () => {
+        dispatch(removeAll(id));
+    };
     const changeDeliveryMethod = () => {
         setDelivery(!delivery);
     };
 
     const totalPrice =
-        Math.round(
-            (cart.reduce((acc, curr) => {
-                return acc + curr.product.price * curr.cartQuantity;
-            }, 0) +
-                (delivery ? 5 : 0)) *
-                100
-        ) / 100;
+        cart.reduce((acc, curr) => {
+            return acc + curr.product.price * curr.cartQuantity;
+        }, 0) + (delivery ? 5 : 0);
 
     const totalItems = cart.reduce((acc, curr) => {
         return acc + curr.cartQuantity;
     }, 0);
 
     return {
+        delivery,
         cart,
         addToCart,
         removeFromCart,
         totalPrice,
         totalItems,
         changeDeliveryMethod,
+        forceRemoveAll,
     };
 };

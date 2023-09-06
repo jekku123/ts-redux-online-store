@@ -18,7 +18,7 @@ const StoreNavbar = () => {
     const [showNavSecond, setShowNavSecond] = useState(false);
 
     return (
-        <MDBNavbar expand='lg' dark bgColor='dark'>
+        <MDBNavbar expand='md' dark bgColor='dark'>
             <MDBContainer>
                 <LinkContainer to='/'>
                     <MDBNavbarBrand>Redux Store</MDBNavbarBrand>
@@ -30,7 +30,6 @@ const StoreNavbar = () => {
                 >
                     <MDBIcon icon='bars' fas />
                 </MDBNavbarToggler>
-
                 <MDBCollapse navbar show={showNavSecond}>
                     <MDBNavbarNav>
                         <LinkContainer to='/'>

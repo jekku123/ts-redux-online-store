@@ -5,6 +5,7 @@ import {
     createRoutesFromElements,
 } from 'react-router-dom';
 import Root from './Root';
+
 import Cart from './pages/Cart';
 import ProductList from './pages/ProductList';
 
