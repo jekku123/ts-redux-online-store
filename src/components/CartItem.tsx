@@ -18,12 +18,12 @@ type CartItemProps = {
     removeAll: (id: number) => void;
 };
 
-const CartItem = ({
+export function CartItem({
     cart,
     removeFromCart,
     addToCart,
     removeAll,
-}: CartItemProps) => {
+}: CartItemProps) {
     return (
         <>
             {cart.map((item) => (
@@ -92,6 +92,6 @@ const CartItem = ({
             ))}
         </>
     );
-};
+}
 
 export default CartItem;

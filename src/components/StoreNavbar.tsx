@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useCart } from '../hooks/useCart';
 
-const StoreNavbar = () => {
+export default function StoreNavbar() {
     const { totalItems } = useCart();
     const [showNavSecond, setShowNavSecond] = useState(false);
 
@@ -48,6 +48,4 @@ const StoreNavbar = () => {
             </MDBContainer>
         </MDBNavbar>
     );
-};
-
-export default StoreNavbar;
+}

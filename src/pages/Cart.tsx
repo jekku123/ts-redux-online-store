@@ -12,11 +12,11 @@ import {
 import { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import CartItem from '../components/CartItem';
-import SummaryModal from '../components/SummaryModal';
+import { SummaryModal } from '../components/SummaryModal';
 import { useCart } from '../hooks/useCart';
 import { roundANumber } from '../utils/roundANumber';
 
-const Cart = () => {
+export default function Cart() {
     const {
         cart,
         totalPrice,
@@ -28,8 +28,8 @@ const Cart = () => {
         forceRemoveAll,
     } = useCart();
 
-    const [basicModal, setBasicModal] = useState(false);
-    const toggleShow = () => setBasicModal(!basicModal);
+    const [isModal, setIsModal] = useState(false);
+    const toggleModal = () => setIsModal(!isModal);
 
     return (
         <MDBContainer className='py-5' style={{ backgroundColor: '#eee' }}>
@@ -138,15 +138,15 @@ const Cart = () => {
                                             color='dark'
                                             block
                                             size='lg'
-                                            onClick={toggleShow}
+                                            onClick={toggleModal}
                                         >
                                             Order
                                         </MDBBtn>
 
                                         <SummaryModal
-                                            basicModal={basicModal}
-                                            setBasicModal={setBasicModal}
-                                            toggleShow={toggleShow}
+                                            isModal={isModal}
+                                            setIsModal={setIsModal}
+                                            toggleModal={toggleModal}
                                             cart={cart}
                                             totalPrice={totalPrice}
                                             delivery={delivery}
@@ -160,6 +160,4 @@ const Cart = () => {
             </MDBRow>
         </MDBContainer>
     );
-};
-
-export default Cart;
+}

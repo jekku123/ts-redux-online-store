@@ -14,29 +14,29 @@ import { roundANumber } from '../utils/roundANumber';
 type SummaryModalProps = {
     cart: ICart['cartItems'];
     totalPrice: number;
-    basicModal: boolean;
-    setBasicModal: React.Dispatch<React.SetStateAction<boolean>>;
-    toggleShow: () => void;
+    isModal: boolean;
+    setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
+    toggleModal: () => void;
     delivery: boolean;
 };
 
-const SummaryModal = ({
+export function SummaryModal({
     cart,
     totalPrice,
-    basicModal,
-    setBasicModal,
-    toggleShow,
+    isModal,
+    setIsModal,
+    toggleModal,
     delivery,
-}: SummaryModalProps) => {
+}: SummaryModalProps) {
     return (
-        <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+        <MDBModal show={isModal} setShow={setIsModal} tabIndex='-1'>
             <MDBModalDialog>
                 <MDBModalContent>
                     <MDBModalHeader className='border-bottom-0'>
                         <MDBBtn
                             className='btn-close'
                             color='none'
-                            onClick={toggleShow}
+                            onClick={toggleModal}
                         ></MDBBtn>
                     </MDBModalHeader>
                     <MDBModalBody className='text-start text-black p-4'>
@@ -45,7 +45,7 @@ const SummaryModal = ({
                         </MDBTypography>
 
                         {cart.map((item) => (
-                            <>
+                            <div key={item.product.id}>
                                 <hr className='my-4' />
 
                                 <div className='d-flex justify-content-between'>
@@ -61,7 +61,7 @@ const SummaryModal = ({
                                         )}
                                     </p>
                                 </div>
-                            </>
+                            </div>
                         ))}
 
                         <hr className='my-4' />
@@ -84,7 +84,7 @@ const SummaryModal = ({
                             size='lg'
                             color='dark'
                             className='mb-1'
-                            onClick={toggleShow}
+                            onClick={toggleModal}
                         >
                             Pay
                         </MDBBtn>
@@ -93,5 +93,4 @@ const SummaryModal = ({
             </MDBModalDialog>
         </MDBModal>
     );
-};
-export default SummaryModal;
+}

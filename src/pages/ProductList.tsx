@@ -1,8 +1,8 @@
-import { MDBContainer, MDBTypography } from 'mdb-react-ui-kit';
-import ProductCard from '../components/ProductCard';
+import { MDBContainer, MDBRow, MDBTypography } from 'mdb-react-ui-kit';
+import { ProductCard } from '../components/ProductCard';
 import { useGetProductsQuery } from '../redux/services/products/productApi';
 
-const List = () => {
+export default function ProductList() {
     const { data, isLoading, error } = useGetProductsQuery(undefined, {
         refetchOnMountOrArgChange: true,
     });
@@ -26,17 +26,13 @@ const List = () => {
     return (
         <MDBContainer>
             <MDBTypography tag='h2' className='text-center p-3'>
-                List of products
+                Products
             </MDBTypography>
-            <div className='d-flex flex-wrap justify-content-center'>
+            <MDBRow className='row-cols-1 row-cols-md-2 row-cols-xl-3 g-4'>
                 {data?.map((product) => (
-                    <div key={product.id} className='p-3'>
-                        <ProductCard key={product.id} product={product} />
-                    </div>
+                    <ProductCard key={product.id} product={product} />
                 ))}
-            </div>
+            </MDBRow>
         </MDBContainer>
     );
-};
-
-export default List;
+}

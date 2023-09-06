@@ -9,7 +9,7 @@ import Root from './Root';
 import Cart from './pages/Cart';
 import ProductList from './pages/ProductList';
 
-const App = () => {
+export default function App() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path='/' element={<Root />}>
@@ -20,6 +20,4 @@ const App = () => {
     );
 
     return <RouterProvider router={router} />;
-};
-
-export default App;
+}
