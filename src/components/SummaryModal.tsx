@@ -8,7 +8,7 @@ import {
     MDBModalHeader,
     MDBTypography,
 } from 'mdb-react-ui-kit';
-import { ICart } from '../redux/features/cart/cartSlice';
+import { ICart } from '../features/cart/cartSlice';
 import { roundANumber } from '../utils/roundANumber';
 
 type SummaryModalProps = {

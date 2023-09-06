@@ -7,8 +7,8 @@ import {
     MDBRow,
     MDBTypography,
 } from 'mdb-react-ui-kit';
-import { ICart } from '../redux/features/cart/cartSlice';
-import { IProduct } from '../redux/services/products/productApi';
+import { ICart } from '../features/cart/cartSlice';
+import { IProduct } from '../services/products/productApi';
 import { roundANumber } from '../utils/roundANumber';
 
 type CartItemProps = {

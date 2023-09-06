@@ -9,7 +9,7 @@ import {
     MDBModalTitle,
 } from 'mdb-react-ui-kit';
 import { useCart } from '../hooks/useCart';
-import { IProduct } from '../redux/services/products/productApi';
+import { IProduct } from '../services/products/productApi';
 
 type ConfirmModalProps = {
     isModal: boolean;

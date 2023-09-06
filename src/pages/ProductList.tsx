@@ -1,6 +1,6 @@
 import { MDBContainer, MDBRow, MDBTypography } from 'mdb-react-ui-kit';
 import { ProductCard } from '../components/ProductCard';
-import { useGetProductsQuery } from '../redux/services/products/productApi';
+import { useGetProductsQuery } from '../services/products/productApi';
 
 export default function ProductList() {
     const { data, isLoading, error } = useGetProductsQuery(undefined, {

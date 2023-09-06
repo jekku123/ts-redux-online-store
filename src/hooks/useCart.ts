@@ -4,9 +4,9 @@ import {
     cartProducts,
     remove,
     removeAll,
-} from '../redux/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { IProduct } from '../redux/services/products/productApi';
+} from '../features/cart/cartSlice';
+import { IProduct } from '../services/products/productApi';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 export const useCart = () => {
     const cart = useAppSelector(cartProducts);

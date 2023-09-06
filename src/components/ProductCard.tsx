@@ -11,7 +11,7 @@ import {
     MDBCol,
 } from 'mdb-react-ui-kit';
 import { useState } from 'react';
-import { IProduct } from '../redux/services/products/productApi';
+import { IProduct } from '../services/products/productApi';
 import { ConfirmModal } from './ConfirmModal';
 import { Rating } from './Rating';
 
