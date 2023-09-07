@@ -11,6 +11,7 @@ import {
 } from 'mdb-react-ui-kit';
 import { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
+import reduxImg from '../assets/redux.svg';
 import { useCart } from '../hooks/useCart';
 
 export default function StoreNavbar() {
@@ -21,7 +22,10 @@ export default function StoreNavbar() {
         <MDBNavbar expand='md' dark bgColor='dark'>
             <MDBContainer>
                 <LinkContainer to='/'>
-                    <MDBNavbarBrand>Redux Store</MDBNavbarBrand>
+                    <MDBNavbarBrand>
+                        <img src={reduxImg} height='30' alt='' loading='lazy' />{' '}
+                        Redux Store
+                    </MDBNavbarBrand>
                 </LinkContainer>
                 <MDBNavbarToggler
                     aria-expanded='false'
