@@ -1,60 +1,61 @@
 import {
-    MDBBtn,
-    MDBModal,
-    MDBModalBody,
-    MDBModalContent,
-    MDBModalDialog,
-    MDBModalFooter,
-    MDBModalHeader,
-    MDBModalTitle,
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalContent,
+  MDBModalDialog,
+  MDBModalFooter,
+  MDBModalHeader,
+  MDBModalTitle,
 } from 'mdb-react-ui-kit';
+import { useState } from 'react';
 import { useCart } from '../hooks/useCart';
 import { IProduct } from '../services/products/productApi';
 
 type ConfirmModalProps = {
-    isModal: boolean;
-    setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
-    toggleModal: () => void;
-    product: IProduct;
+  product: IProduct;
 };
 
-export function ConfirmModal({
-    isModal,
-    setIsModal,
-    toggleModal,
-    product,
-}: ConfirmModalProps) {
-    const { addToCart } = useCart();
+export function ConfirmModal({ product }: ConfirmModalProps) {
+  const { addToCart } = useCart();
 
-    const handleAccept = () => {
-        addToCart(product)();
-        toggleModal();
-    };
+  const [isModal, setIsModal] = useState(false);
+  const toggleModal = () => setIsModal(!isModal);
 
-    return (
-        <MDBModal show={isModal} setShow={setIsModal} tabIndex='-1'>
-            <MDBModalDialog>
-                <MDBModalContent>
-                    <MDBModalHeader>
-                        <MDBModalTitle tag='h5'>Add to cart?</MDBModalTitle>
-                        <MDBBtn
-                            className='btn-close'
-                            color='dark'
-                            onClick={toggleModal}
-                        ></MDBBtn>
-                    </MDBModalHeader>
-                    <MDBModalBody tag='h6'>{product.title}</MDBModalBody>
+  const handleAccept = () => {
+    addToCart(product)();
+    toggleModal();
+  };
 
-                    <MDBModalFooter>
-                        <MDBBtn color='dark' onClick={handleAccept}>
-                            Yes
-                        </MDBBtn>
-                        <MDBBtn color='dark' onClick={toggleModal}>
-                            No
-                        </MDBBtn>
-                    </MDBModalFooter>
-                </MDBModalContent>
-            </MDBModalDialog>
-        </MDBModal>
-    );
+  return (
+    <>
+      <MDBBtn color="dark" onClick={toggleModal}>
+        Add to cart
+      </MDBBtn>
+      <MDBModal show={isModal} setShow={setIsModal} tabIndex="-1">
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle tag="h5">Add to cart?</MDBModalTitle>
+              <MDBBtn
+                className="btn-close"
+                color="dark"
+                onClick={toggleModal}
+              ></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody tag="h6">{product.title}</MDBModalBody>
+
+            <MDBModalFooter>
+              <MDBBtn color="dark" onClick={handleAccept}>
+                Yes
+              </MDBBtn>
+              <MDBBtn color="dark" onClick={toggleModal}>
+                No
+              </MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+    </>
+  );
 }
