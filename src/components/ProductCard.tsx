@@ -14,15 +14,11 @@ import { IProduct } from '../services/products/productApi';
 import { ConfirmModal } from './ConfirmModal';
 import { Rating } from './Rating';
 
-type ProductProps = {
-  product: IProduct;
-};
-
-export function ProductCard({ product }: ProductProps) {
-  const { title, description, image, rating, price, category } = product;
+export function ProductCard(props: IProduct) {
+  const { id, title, description, image, rating, price, category } = props;
 
   return (
-    <MDBCol key={product.id}>
+    <MDBCol key={id}>
       <MDBCard className="h-100 hover-shadow">
         <div className="bg-image hover-zoom d-flex justify-content-center">
           <MDBRipple rippleTag="a" href="#!">
@@ -47,7 +43,7 @@ export function ProductCard({ product }: ProductProps) {
           <div className="d-flex justify-content-between align-items-center pb-1">
             <MDBCardText tag="h5">€ {price}</MDBCardText>
 
-            <ConfirmModal product={product} />
+            <ConfirmModal {...props} />
           </div>
         </MDBCardFooter>
       </MDBCard>

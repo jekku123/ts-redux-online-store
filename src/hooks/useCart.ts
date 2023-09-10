@@ -13,15 +13,15 @@ export const useCart = () => {
   const dispatch = useAppDispatch();
   const [delivery, setDelivery] = useState(true);
 
-  const addToCart = (product: IProduct) => () => {
+  const addToCart = (product: IProduct) => {
     dispatch(add(product));
   };
 
-  const removeFromCart = (id: number) => () => {
+  const removeFromCart = (id: number) => {
     dispatch(remove(id));
   };
 
-  const forceRemoveAll = (id: number) => () => {
+  const forceRemoveAll = (id: number) => {
     dispatch(removeAll(id));
   };
   const changeDeliveryMethod = () => {

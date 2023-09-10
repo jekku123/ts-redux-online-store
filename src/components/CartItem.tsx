@@ -37,14 +37,18 @@ export function CartItem() {
               <MDBIcon
                 fas
                 icon="minus"
-                onClick={removeFromCart(item.product.id)}
+                onClick={() => removeFromCart(item.product.id)}
               />
             </MDBBtn>
 
             <MDBInput type="text" min="0" value={item.cartQuantity} size="sm" />
 
             <MDBBtn color="link" className="px-2">
-              <MDBIcon fas icon="plus" onClick={addToCart(item.product)} />
+              <MDBIcon
+                fas
+                icon="plus"
+                onClick={() => addToCart(item.product)}
+              />
             </MDBBtn>
           </MDBCol>
           <MDBCol md="3" lg="2" xl="2" className="text-end">
@@ -56,7 +60,7 @@ export function CartItem() {
             <MDBIcon
               fas
               icon="times"
-              onClick={forceRemoveAll(item.product.id)}
+              onClick={() => forceRemoveAll(item.product.id)}
             />
           </MDBCol>
         </MDBRow>

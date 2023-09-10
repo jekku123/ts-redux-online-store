@@ -12,18 +12,14 @@ import { useState } from 'react';
 import { useCart } from '../hooks/useCart';
 import { IProduct } from '../services/products/productApi';
 
-type ConfirmModalProps = {
-  product: IProduct;
-};
-
-export function ConfirmModal({ product }: ConfirmModalProps) {
+export function ConfirmModal(props: IProduct) {
   const { addToCart } = useCart();
 
   const [isModal, setIsModal] = useState(false);
   const toggleModal = () => setIsModal(!isModal);
 
   const handleAccept = () => {
-    addToCart(product)();
+    addToCart(props);
     toggleModal();
   };
 
@@ -43,7 +39,7 @@ export function ConfirmModal({ product }: ConfirmModalProps) {
                 onClick={toggleModal}
               ></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody tag="h6">{product.title}</MDBModalBody>
+            <MDBModalBody tag="h6">{props.title}</MDBModalBody>
 
             <MDBModalFooter>
               <MDBBtn color="dark" onClick={handleAccept}>
