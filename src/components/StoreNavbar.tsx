@@ -41,9 +41,11 @@ export default function StoreNavbar() {
             <LinkContainer to="/cart">
               <MDBNavbarLink>
                 Cart{' '}
-                <MDBBadge pill color="danger">
-                  {totalItems}
-                </MDBBadge>
+                {totalItems > 0 ? (
+                  <MDBBadge pill color="danger">
+                    {totalItems}
+                  </MDBBadge>
+                ) : undefined}
               </MDBNavbarLink>
             </LinkContainer>
           </MDBNavbarNav>
