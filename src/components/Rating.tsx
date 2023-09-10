@@ -8,13 +8,16 @@ type RatingProps = {
 };
 
 export function Rating({ rating }: RatingProps) {
-    const arr = Array.from(Array(Math.round(rating.rate))).map((_el, i) => (
+    const decimal = rating.rate % 1;
+    const rate = rating.rate - decimal;
+    const arr = Array.from(Array(Math.round(rate))).map((_el, i) => (
         <MDBIcon key={i} fas icon='star' />
     ));
 
     return (
         <div className='ms-auto text-warning py-2'>
-            {arr} ({rating.count})
+            {arr} {decimal >= 0.5 && <MDBIcon fas icon='star-half' />} (
+            {rating.count})
         </div>
     );
 }

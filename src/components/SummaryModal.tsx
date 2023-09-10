@@ -29,7 +29,7 @@ export function SummaryModal({
     delivery,
 }: SummaryModalProps) {
     return (
-        <MDBModal show={isModal} setShow={setIsModal} tabIndex='-1'>
+        <MDBModal show={isModal} setShow={isModal} tabIndex='-1'>
             <MDBModalDialog>
                 <MDBModalContent>
                     <MDBModalHeader className='border-bottom-0'>

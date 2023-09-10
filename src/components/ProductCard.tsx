@@ -9,6 +9,7 @@ import {
     MDBCardText,
     MDBCardTitle,
     MDBCol,
+    MDBRipple,
 } from 'mdb-react-ui-kit';
 import { useState } from 'react';
 import { IProduct } from '../services/products/productApi';
@@ -28,15 +29,17 @@ export function ProductCard({ product }: ProductProps) {
         <MDBCol key={product.id}>
             <MDBCard className='h-100 hover-shadow'>
                 <div className='bg-image hover-zoom d-flex justify-content-center'>
-                    <MDBCardImage
-                        src={image}
-                        alt={title}
-                        className='mt-3'
-                        style={{
-                            height: '250px',
-                            objectFit: 'contain',
-                        }}
-                    />
+                    <MDBRipple rippleTag='a' href='#!'>
+                        <MDBCardImage
+                            src={image}
+                            alt={title}
+                            className='mt-3'
+                            style={{
+                                height: '250px',
+                                objectFit: 'contain',
+                            }}
+                        />
+                    </MDBRipple>
                 </div>
                 <MDBCardBody>
                     <MDBCardTitle>{title}</MDBCardTitle>

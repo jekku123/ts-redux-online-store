@@ -25,6 +25,7 @@ export function ConfirmModal({
     product,
 }: ConfirmModalProps) {
     const { addToCart } = useCart();
+
     const handleAccept = () => {
         addToCart(product)();
         toggleModal();

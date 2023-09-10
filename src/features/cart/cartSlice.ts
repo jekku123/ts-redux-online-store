@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
                 (item) => item.product.id === action.payload.id
             );
             if (index > -1) {
-                state.cartItems[index].cartQuantity += 1;
+                state.cartItems[index].cartQuantity++;
             } else {
                 state.cartItems.push({
                     product: action.payload,
@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
             );
 
             if (state.cartItems[index].cartQuantity > 1) {
-                state.cartItems[index].cartQuantity -= 1;
+                state.cartItems[index].cartQuantity--;
             } else {
                 state.cartItems = state.cartItems.filter(
                     (item) => item.product.id !== action.payload
