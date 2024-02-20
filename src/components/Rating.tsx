@@ -11,7 +11,7 @@ export function Rating({ rating }: RatingProps) {
   const decimal = rating.rate % 1;
   const rate = rating.rate - decimal;
   const arr = Array.from(Array(Math.round(rate))).map((_el, i) => (
-    <MDBIcon key={i} fas icon="star" />
+    <MDBIcon key={`icon-key-${i}`} fas icon="star" />
   ));
 
   return (
