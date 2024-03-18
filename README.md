@@ -9,3 +9,7 @@ Online store app done with React and Redux.
 
 - Add and remove products from the cart
 - Increase and decrease the quantity of products in the cart
+
+## Live demo
+
+[Live demo](http://13.49.125.65:3000/) hosted on AWS EC2
