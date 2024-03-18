@@ -17,14 +17,14 @@ jobs:
         run: docker build -t jekku123/redux-online-store --build-arg REACT_APP_NODE_ENV='production' --build-arg REACT_APP_STORE_API_URL='http://fakestoreapi.com' .
       - name: Publish image to docker hub
         run: docker push jekku123/redux-online-store:latest
-#   deploy:
-#     needs: build
-#     runs-on: self-hosted
-#     steps:
-#       - name: Pull image from docker hub
-#         run: docker pull jekku123/mern-test-react:latest
-#       - name: Delete Old Container
-#         run: docker rm -f mern-test-react-container
-#       - name: Run docker container
-#         run: docker run -d -p 5173:80 --name mern-test-react-container jekku123/mern-test-react
 
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull jekku123/redux-online-store:latest
+      - name: Delete Old Container
+        run: docker rm -f redux-online-store-container
+      - name: Run docker container
+        run: docker run -d -p 3000:3000 --name redux-online-store-container jekku123/redux-online-store
