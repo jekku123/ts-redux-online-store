@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const API_URL = 'https://fakestoreapi.com/';
+const API_URL = process.env.REACT_APP_STORE_API_URL;
 
 export interface IProduct {
   id: number;

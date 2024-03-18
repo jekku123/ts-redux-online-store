@@ -1,0 +1,10 @@
+services:
+  server:
+    build:
+      context: .
+      target: production
+    environment:
+      NODE_ENV: production
+      REACT_APP_STORE_API_URL: http://fakestoreapi.com
+    ports:
+      - 3000:3000
