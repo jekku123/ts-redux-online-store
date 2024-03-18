@@ -2,9 +2,10 @@ services:
   server:
     build:
       context: .
-      target: production
+      target: base
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       REACT_APP_STORE_API_URL: http://fakestoreapi.com
+    command: npm start
     ports:
       - 3000:3000
