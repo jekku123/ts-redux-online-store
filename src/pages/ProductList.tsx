@@ -16,6 +16,7 @@ export default function ProductList() {
   }
 
   if (error) {
+    console.log(error);
     return (
       <MDBTypography tag="h3" className="text-center p-3">
         There was an error :(
