@@ -8,10 +8,14 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
-COPY . .
+COPY public /usr/src/app/public
+COPY src /usr/src/app/src
+COPY tsconfig.json /usr/src/app/tsconfig.json
 EXPOSE 3000
 RUN npm run build
 
-FROM base AS production
+FROM node:${NODE_VERSION}-alpine AS production
+WORKDIR /usr/src/app
+COPY --from=base /usr/src/app/build /usr/src/app/build
 RUN npm install -g serve
 CMD ["serve", "-s", "build", "-l", "3000"]
