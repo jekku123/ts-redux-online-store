@@ -27,4 +27,4 @@ jobs:
       - name: Delete Old Container
         run: docker rm -f redux-online-store-container
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name redux-online-store-container -e REACT_APP_STORE_API_URL='http://fakestoreapi.com' jekku123/redux-online-store
+        run: docker run -d -p 3000:3000 --name redux-online-store-container jekku123/redux-online-store
